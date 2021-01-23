@@ -1,0 +1,10 @@
+version: "3.9"
+
+services:
+  api:
+    build: .
+    container_name: ts-sts
+    ports:
+      - ${PORT}:${PORT}
+    env_file:
+      - .env
