@@ -6,9 +6,9 @@ import { authMiddleware } from '../middleware'
 const screenRouter = Router()
 
 screenRouter.post(
-  '/screen',
-  authMiddleware.methodPermission,
-  adaptRoute(makeCreateScreenController())
+    '/screen',
+    authMiddleware.methodPermission,
+    adaptRoute(makeCreateScreenController())
 )
 
 export default screenRouter

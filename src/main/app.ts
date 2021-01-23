@@ -10,33 +10,33 @@ import baseRouter from './routes/base'
 import screenRouter from './routes/screen'
 
 class App {
-  public default: express.Application
+    public default: express.Application
 
-  constructor() {
-    this.default = express()
+    constructor() {
+        this.default = express()
 
-    this.setupMiddlewares()
-    this.setupRoutes()
-  }
+        this.setupMiddlewares()
+        this.setupRoutes()
+    }
 
-  private setupMiddlewares() {
-    this.default.use(cors())
-    this.default.use(helmet())
-    this.default.use(bodyParser.json())
-  }
+    private setupMiddlewares() {
+        this.default.use(cors())
+        this.default.use(helmet())
+        this.default.use(bodyParser.json())
+    }
 
-  private setupRoutes() {
-    // public
-    this.default.use(baseRouter)
+    private setupRoutes() {
+        // public
+        this.default.use(baseRouter)
 
-    // private
-    this.default.use(screenRouter)
+        // private
+        this.default.use(screenRouter)
 
-    this.default.use((_, response, next) => {
-      response.send({ error: 'route not found' })
-      next()
-    })
-  }
+        this.default.use((_, response, next) => {
+            response.send({ error: 'route not found' })
+            next()
+        })
+    }
 }
 
 export default new App()

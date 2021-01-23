@@ -4,7 +4,7 @@ import { CreateScreen } from '@usecases/create-screen'
 import { CreateScreenController } from '@controllers/create-screen'
 
 export const makeCreateScreenController = (): CreateScreenController => {
-  const screenRepository: ScreenRepository = new InMemoryScreenRepository()
-  const usecase = new CreateScreen(screenRepository)
-  return new CreateScreenController(usecase)
+    const screenRepository: ScreenRepository = new InMemoryScreenRepository()
+    const usecase = new CreateScreen(screenRepository)
+    return new CreateScreenController(usecase)
 }
