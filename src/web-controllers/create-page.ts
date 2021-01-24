@@ -3,7 +3,7 @@ import { HttpRequest, HttpResponse } from './ports'
 import { badRequest, created, serverError } from './utils/http-helper'
 import { WebController } from './web-controller'
 
-export class CreateScreenController implements WebController {
+export class CreatePageController implements WebController {
     private readonly usecase: UseCase
 
     constructor(usecase: UseCase) {
@@ -12,7 +12,7 @@ export class CreateScreenController implements WebController {
 
     async handle(request: HttpRequest): Promise<HttpResponse> {
         try {
-            const response = await this.usecase.perform({ code: request.body.code })
+            const response = await this.usecase.perform(request.body)
 
             if (response.isRight()) {
                 return created(response.value)

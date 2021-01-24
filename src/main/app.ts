@@ -7,7 +7,7 @@ import bodyParser from 'body-parser'
 
 // routes
 import baseRouter from './routes/base'
-import screenRouter from './routes/screen'
+import pageRouter from './routes/page'
 
 class App {
     public default: express.Application
@@ -30,7 +30,7 @@ class App {
         this.default.use(baseRouter)
 
         // private
-        this.default.use(screenRouter)
+        this.default.use(pageRouter)
 
         this.default.use((_, response, next) => {
             response.send({ error: 'route not found' })
