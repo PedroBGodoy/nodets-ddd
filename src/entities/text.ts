@@ -1,7 +1,4 @@
-import { text } from 'body-parser'
 import { Either, right, left } from '../shared/either'
-import { Code } from './code'
-import { InvalidCodeError } from './erros/invalid-code-error'
 import { InvalidInfoTextError } from './erros/invalid-info-text-error'
 import { InfoText } from './info-text'
 

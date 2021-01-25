@@ -5,7 +5,6 @@ import { InMemoryTextRepository } from '@src/infra/repositories/in-memory/in-mem
 import { CreateTextController } from '@src/web-controllers/create-text'
 import { HttpRequest, HttpResponse } from '@controllers/ports'
 import { TextData } from '@src/entities/text'
-import { InvalidCodeError } from '@entities/erros/invalid-code-error'
 import { InvalidInfoTextError } from '@src/entities/erros/invalid-info-text-error'
 
 let textRepository: TextRepository
