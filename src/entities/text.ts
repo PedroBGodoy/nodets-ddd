@@ -1,26 +1,38 @@
 import { Either, right, left } from '../shared/either'
-import { Code } from './code'
-import { InvalidCodeError } from './erros/invalid-code-error'
+import { InvalidInfoTextError } from './erros/invalid-info-text-error'
+import { InfoText } from './info-text'
 
-interface TextData {
-  code: number
+export interface TextData {
+    code?: number
+    infoText: string
+    user: number
+    createdAt?: Date
+    updatedAt?: Date
+    active?: boolean
 }
 
 export class Text {
-  public readonly code: number
+    public readonly code: number | undefined
+    public readonly infoText: string
+    public readonly createdAt: Date
+    public readonly updatedAt: Date
+    public readonly active: boolean
 
-  private constructor(code: number) {
-    this.code = code
-    Object.freeze(this)
-  }
-
-  static create(textData: TextData): Either<InvalidCodeError, Text> {
-    const codeOrError: Either<InvalidCodeError, Code> = Code.create(
-      textData.code
-    )
-    if (codeOrError.isLeft()) {
-      return left(codeOrError.value)
+    private constructor(pageData: TextData) {
+        this.code = pageData.code
+        this.infoText = pageData.infoText
+        this.createdAt = pageData.createdAt ?? new Date()
+        this.updatedAt = pageData.updatedAt ?? new Date()
+        this.active = pageData.active ?? true
+        Object.freeze(this)
     }
-    return right(new Text(textData.code))
-  }
+
+    static create(textData: TextData): Either<InvalidInfoTextError, Text> {
+        const infoTextOrError: Either<InvalidInfoTextError, InfoText> = InfoText.create(
+            textData.infoText
+        )
+        if (infoTextOrError.isLeft()) return left(infoTextOrError.value)
+
+        return right(new Text(textData))
+    }
 }

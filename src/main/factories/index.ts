@@ -1,1 +1,2 @@
-export * from './screen'
+export * from './page'
+export * from './text'
